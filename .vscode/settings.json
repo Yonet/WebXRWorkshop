@@ -1,0 +1,23 @@
+{
+    "typescript.tsdk": "node_modules\\typescript\\lib",
+    "prettier.tabWidth": 4,
+    "prettier.useTabs": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnType": true,
+    "editor.detectIndentation": false,
+    "prettier.htmlWhitespaceSensitivity": "strict",
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": true,
+    "typescript.format.semicolons": "insert",
+    "typescript.format.insertSpaceBeforeFunctionParenthesis": true,
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": true,
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+    "typescript.format.insertSpaceAfterTypeAssertion": true,
+    "editor.formatOnSave": true,
+    "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+    "editor.autoClosingBrackets": "always",
+    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": true,
+    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+    "editor.acceptSuggestionOnEnter": "smart",
+    "prettier.printWidth": 125,
+    
+}
