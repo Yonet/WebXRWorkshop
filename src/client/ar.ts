@@ -1,4 +1,4 @@
-import { Mesh, MeshBasicMaterial, MeshPhongMaterial, HemisphereLight, PerspectiveCamera, TextureLoader, Scene, SphereGeometry, WebGLRenderer } from "/build/three.module.js";
+import { Mesh, MeshBasicMaterial, MeshPhongMaterial, HemisphereLight,RingBufferGeometry, PerspectiveCamera, TextureLoader, Scene, SphereGeometry, WebGLRenderer } from "/build/three.module.js";
 import {ARButton} from './jsm/webxr/ARbutton';
 
 // Scene
@@ -43,7 +43,7 @@ animate();
 function init() {
 	renderer.setPixelRatio(window.devicePixelRatio);
 	renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(ARButton.createButton(renderer, {requiredFeatures: ["hit-test"]} }));
+    document.body.appendChild(ARButton.createButton(renderer, {requiredFeatures: ["hit-test"]}));
 
     const controller = renderer.xr.getController(0);  
 	controller.addEventListener("select", onSelect);
@@ -59,7 +59,7 @@ function init() {
     clouds.position.z = -2;
 
     //Hittest indicator
-	reticle = new Mesh(new RingBufferGeometry(0.15, 0.2, 32).rotateX(-Math.PI / 2), new MeshBasicMaterial());
+	const reticle = new Mesh(new RingBufferGeometry(0.15, 0.2, 32).rotateX(-Math.PI / 2), new MeshBasicMaterial());
 	reticle.matrixAutoUpdate = false;
 	reticle.visible = false;
 	scene.add(reticle);
@@ -86,15 +86,12 @@ function onWindowResize() {
 	render();
 }
 
-function animate(): void {
-	renderer.setAnimationLoop(animate);
-	earth.rotation.y += 0.001;
-    clouds.rotation.y += 0.002;
-	render();
+function animate() {
+	renderer.setAnimationLoop(render);
 }
 
-function render(timestamp, xrFrame): void {
-    if (xrFrame) {
+function render(timestamp: number, xrFrame: any) {
+	if (xrFrame) {
 		earth.visible = false;
 		const referenceSpace = renderer.xr.getReferenceSpace();
 		const session = renderer.xr.getSession();
@@ -121,5 +118,9 @@ function render(timestamp, xrFrame): void {
 				reticle.visible = false;
 			}
 		}
+	}
+
+	controls.update();
+	stats.update();
 	renderer.render(scene, camera);
 }

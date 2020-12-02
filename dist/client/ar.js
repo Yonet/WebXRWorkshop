@@ -1,4 +1,4 @@
-import { Mesh, MeshBasicMaterial, MeshPhongMaterial, HemisphereLight, PerspectiveCamera, TextureLoader, Scene, SphereGeometry, WebGLRenderer } from "/build/three.module.js";
+import { Mesh, MeshBasicMaterial, MeshPhongMaterial, HemisphereLight, RingBufferGeometry, PerspectiveCamera, TextureLoader, Scene, SphereGeometry, WebGLRenderer } from "/build/three.module.js";
 import { ARButton } from './jsm/webxr/ARbutton';
 // Scene
 const canvas = document.getElementById("canvas");
@@ -38,23 +38,22 @@ function init() {
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(ARButton.createButton(renderer, { requiredFeatures: ["hit-test"] }));
+    const controller = renderer.xr.getController(0);
+    controller.addEventListener("select", onSelect);
+    scene.add(controller);
+    //light
+    const light = new HemisphereLight(0xffffff, 0xbbbbff, 1);
+    light.position.set(0.5, 1, 0.25);
+    scene.add(light);
+    window.addEventListener("resize", onWindowResize, false);
+    earth.position.z = -2;
+    clouds.position.z = -2;
+    //Hittest indicator
+    const reticle = new Mesh(new RingBufferGeometry(0.15, 0.2, 32).rotateX(-Math.PI / 2), new MeshBasicMaterial());
+    reticle.matrixAutoUpdate = false;
+    reticle.visible = false;
+    scene.add(reticle);
 }
-;
-const controller = renderer.xr.getController(0);
-controller.addEventListener("select", onSelect);
-scene.add(controller);
-//light
-const light = new HemisphereLight(0xffffff, 0xbbbbff, 1);
-light.position.set(0.5, 1, 0.25);
-scene.add(light);
-window.addEventListener("resize", onWindowResize, false);
-earth.position.z = -2;
-clouds.position.z = -2;
-//Hittest indicator
-reticle = new Mesh(new RingBufferGeometry(0.15, 0.2, 32).rotateX(-Math.PI / 2), new MeshBasicMaterial());
-reticle.matrixAutoUpdate = false;
-reticle.visible = false;
-scene.add(reticle);
 function onSelect() {
     if (reticle.visible) {
         const mesh = new Mesh(geometry, phongMaterial);
@@ -73,10 +72,7 @@ function onWindowResize() {
     render();
 }
 function animate() {
-    renderer.setAnimationLoop(animate);
-    earth.rotation.y += 0.001;
-    clouds.rotation.y += 0.002;
-    render();
+    renderer.setAnimationLoop(render);
 }
 function render(timestamp, xrFrame) {
     if (xrFrame) {
@@ -106,6 +102,8 @@ function render(timestamp, xrFrame) {
                 reticle.visible = false;
             }
         }
-        renderer.render(scene, camera);
     }
+    controls.update();
+    stats.update();
+    renderer.render(scene, camera);
 }
