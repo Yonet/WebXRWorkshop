@@ -26,6 +26,10 @@ class App {
 			);
 		});
 
+		app.use("/assets/:folder/:file", (req, res) => {
+			res.sendFile(path.join(__dirname, "../../dist/client/assets/" + req.params.folder + "/" + req.params.file));
+		});
+
 		this.server = new http.Server(app);
 	}
 

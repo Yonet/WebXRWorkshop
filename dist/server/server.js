@@ -13,15 +13,12 @@ class App {
         const app = express_1.default();
         app.use(express_1.default.static(path_1.default.join(__dirname, "../client")));
         app.use("/build/three.module.js", express_1.default.static(path_1.default.join(__dirname, "../../node_modules/three/build/three.module.js")));
-        // app.use('/three/src/cameras/PerspectiveCamera', express.static(path.join(__dirname, '../../node_modules/three/src/cameras/PerspectiveCamera.js')))
-        // app.use('/three/src/renderers/WebGLRenderer', express.static(path.join(__dirname, '../../node_modules/three/src/renderers/WebGLRenderer.js')))
-        // app.use('/three/src/scenes/Scene', express.static(path.join(__dirname, '../../node_modules/three/src/scenes/Scene.js')))
-        // app.use('/three/src/scenes/Scene', express.static(path.join(__dirname, '../../node_modules/three/src/scenes/Scene.js')))
-        app.use("/jsm/controls/OrbitControls", express_1.default.static(path_1.default.join(__dirname, "../../node_modules/three/examples/jsm/controls/OrbitControls.js")));
-        app.use("/jsm/libs/stats.module", express_1.default.static(path_1.default.join(__dirname, "../../node_modules/three/examples/jsm/libs/stats.module.js")));
-        app.use("/jsm/libs/dat.gui.module", express_1.default.static(path_1.default.join(__dirname, "../../node_modules/three/examples/jsm/libs/dat.gui.module.js")));
-        app.use("/jsm/webxr/ARButton", express_1.default.static(path_1.default.join(__dirname, "../../node_modules/three/examples/jsm/webxr/ARButton.js")));
-        app.use("/jsm/webxr/VRButton", express_1.default.static(path_1.default.join(__dirname, "../../node_modules/three/examples/jsm/webxr/VRButton.js")));
+        app.use("/jsm/:folder/:file", (req, res) => {
+            res.sendFile(path_1.default.join(__dirname, "../../node_modules/three/examples/jsm/" + req.params.folder + "/" + req.params.file + ".js"));
+        });
+        app.use("/assets/:folder/:file", (req, res) => {
+            res.sendFile(path_1.default.join(__dirname, "../../dist/client/assets/" + req.params.folder + "/" + req.params.file));
+        });
         this.server = new http_1.default.Server(app);
     }
     Start() {
