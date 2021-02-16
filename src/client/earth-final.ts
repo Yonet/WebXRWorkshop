@@ -1,4 +1,4 @@
-import { Mesh, MeshBasicMaterial, MeshPhongMaterial, HemisphereLight,RingBufferGeometry, PerspectiveCamera, TextureLoader, Scene, SphereGeometry, WebGLRenderer } from "/build/three.module.js";
+import { Mesh, MeshBasicMaterial, MeshPhongMaterial, HemisphereLight, PerspectiveCamera, TextureLoader, Scene, SphereGeometry, WebGLRenderer } from "/build/three.module.js";
 
 // Scene
 const canvas = <HTMLCanvasElement>document.getElementById("canvas");
@@ -25,7 +25,7 @@ const material = new MeshPhongMaterial({
 const materialClouds = new MeshPhongMaterial({
     specular: 0x222222,
     shininess: 25,
-    opacity:0.8, 
+    opacity: 0.8,
     transparent: true,
     map: cloudsMap,
 });
@@ -46,16 +46,13 @@ function init() {
   //light
   const light = new HemisphereLight(0xffffff, 0xbbbbff, 1);
   light.position.set(0.5, 1, 0.25);
-  scene.add( light );
-  
+  scene.add(light);
 
 	window.addEventListener("resize", onWindowResize, false);
 	earth.position.z = -2;
   clouds.position.z = -2;
-
-  scene.add( earth );
-  scene.add( clouds );
-
+	scene.add(earth);
+  scene.add(clouds);
 }
 
 function onWindowResize() {
@@ -66,8 +63,8 @@ function onWindowResize() {
 	render();
 }
 
-function animate() {
-	requestAnimationFrame(animate);
+function animate(): void {
+  requestAnimationFrame(animate);
 	// renderer.setAnimationLoop(animate);
 	earth.rotation.y += 0.001;
   clouds.rotation.y += 0.002;
