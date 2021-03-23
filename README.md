@@ -2,7 +2,7 @@
 
 This repository is created for [FrontEndMasters 3D on the Web & WebXR](https://frontendmasters.com/courses/3d-webxr/) course.
 
- ![[FrontEndMasters 3D on the Web & WebXR Course Preview](/src/client/images/WebXRPreview.png)](https://frontendmasters.com/courses/3d-webxr/)
+ [![FrontEndMasters 3D on the Web & WebXR Course Preview](https://github.com/Yonet/WebXRWorkshop/blob/main/src/client/images/WebXRPreview.png)](https://frontendmasters.com/courses/3d-webxr/)
 
  WebXR Gitbook: [www.learnwebxr.dev](https://yonet.gitbook.io/mixed-reality-docs/-MHmDWJS71Z0_jhk69k4/webxr-lessons)
 
