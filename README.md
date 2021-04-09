@@ -69,3 +69,11 @@ npm run dev
 ```bash
 code .
 ```
+
+8. To get an HTTPS connection, run
+```bash
+npm install ngrok
+ngrok http 3000
+```
+
+9. Check the `Forwarding ... https:` line and visit the link
