@@ -36,6 +36,8 @@ animate();
 function init() {
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
+    // xr
+    //renderer.xr.enabled = true;
     //light
     const light = new HemisphereLight(0xffffff, 0xbbbbff, 1);
     light.position.set(0.5, 1, 0.25);
