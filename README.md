@@ -33,6 +33,12 @@ This repository is created for [FrontEndMasters 3D on the Web & WebXR](https://f
 
 ## Installing
 
+You can run this repo by clicking green code button and choosing "open with CodeSpaces" from the dropdown. With CodeSpaces, you can run Visual Studio Code on your browser and code from anywhere. [Sign up for CodeSpaces Beta](https://github.com/features/codespaces?WT.mc_id=aiml-8567-ayyonet) and see the video for details.
+
+[![How to set up remote development with Github Code Spaces and VS Code](http://img.youtube.com/vi/ZWJglERhXLw/0.jpg)](https://youtu.be/ZWJglERhXLw)
+
+If you want to setup your own local environment follow the steps here:
+
 1. Clone Repository
 
 ```bash
