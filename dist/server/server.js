@@ -3,10 +3,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const fs_1 = __importDefault(require("fs"));
 const express_1 = __importDefault(require("express"));
 const path_1 = __importDefault(require("path"));
-const http_1 = __importDefault(require("http"));
-const port = 3000;
+const https_1 = __importDefault(require("https"));
+const port = 443;
 class App {
     constructor(port) {
         this.port = port;
@@ -19,7 +20,11 @@ class App {
         app.use("/assets/:folder/:file", (req, res) => {
             res.sendFile(path_1.default.join(__dirname, "../../dist/client/assets/" + req.params.folder + "/" + req.params.file));
         });
-        this.server = new http_1.default.Server(app);
+        const options = {
+            key: fs_1.default.readFileSync('c:/GitRepos/localhost-key.pem'),
+            cert: fs_1.default.readFileSync('c:/GitRepos/localhost.pem')
+        };
+        this.server = https_1.default.createServer(options, app);
     }
     Start() {
         this.server.listen(this.port, () => {
