@@ -10,12 +10,12 @@ const renderer = new WebGLRenderer({
     canvas: canvas,
 });
 // Geometry radius, width segment, height segment
-const geometry = new SphereGeometry(0.5, 14, 14).translate(0, 0.1, 0);
+const geoSphere = new SphereGeometry(0.5, 14, 14).translate(0, 0.1, 0);
 const material = new MeshBasicMaterial({
-    color: 0xffff00 * Math.random(),
+    color: 0xffffff * Math.random(),
     wireframe: true
 });
-const earth = new Mesh(geometry, material);
+const earth = new Mesh(geoSphere, material);
 init();
 animate();
 function init() {
