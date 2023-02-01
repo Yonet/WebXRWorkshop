@@ -1,4 +1,4 @@
-import { Mesh, MeshBasicMaterial, MeshPhongMaterial, HemisphereLight, PerspectiveCamera, TextureLoader, Scene, SphereGeometry, WebGLRenderer } from "/build/three.module.js";
+import { Mesh, MeshBasicMaterial, PerspectiveCamera, Scene, BoxGeometry, WebGLRenderer } from "/build/three.module.js";
 import { VRButton } from './jsm/webxr/VRButton';
 
 
@@ -14,13 +14,13 @@ const renderer: WebGLRenderer = new WebGLRenderer( {
 } );
 
 // Geometry radius, width segment, height segment
-const geoSphere = new SphereGeometry( 0.5, 14, 14 ).translate( 0, 0.1, 0 );
+const geoSphere = new BoxGeometry( 0.5, 0.5, 0.5 ).translate( 0, 0.1, 0 );
 const material = new MeshBasicMaterial( {
     color: 0xffffff * Math.random(),
     wireframe: true
 } );
 
-const earth: Mesh = new Mesh( geoSphere, material );
+const meshSphere: Mesh = new Mesh( geoSphere, material );
 
 init();
 animate();
@@ -34,8 +34,8 @@ function init () {
     renderer.xr.enabled = true;
 
     window.addEventListener( "resize", onWindowResize, false );
-    earth.position.z = -2;
-    scene.add( earth );
+    meshSphere.position.z = -2;
+    scene.add( meshSphere );
 }
 
 function onWindowResize () {
@@ -49,7 +49,9 @@ function onWindowResize () {
 function animate (): void {
     // requestAnimationFrame( animate );
     renderer.setAnimationLoop( animate );
-    earth.rotation.x += 0.001;
+    meshSphere.rotation.x += 0.001;
+    meshSphere.rotation.y += 0.001;
+    meshSphere.rotation.z += 0.001;
     render();
 }
 
