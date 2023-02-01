@@ -35,8 +35,8 @@ function onWindowResize() {
     render();
 }
 function animate() {
-    requestAnimationFrame(animate);
-    // renderer.setAnimationLoop( animate );
+    // requestAnimationFrame( animate );
+    renderer.setAnimationLoop(animate);
     earth.rotation.x += 0.001;
     render();
 }
